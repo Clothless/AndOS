@@ -1,7 +1,8 @@
 name: and_os
 description: "A new Flutter plugin that was made to check for security measures on both platform, Android and IOS (AndOS)"
 version: 0.0.1
-homepage:
+author: Ibrahim Chiabedraa<chaibedraa.mohamedibrahim@univ-tiaret.dz>
+homepage: https://github.com/Clothless/AndOS.git
 
 environment:
   sdk: ^3.5.3
