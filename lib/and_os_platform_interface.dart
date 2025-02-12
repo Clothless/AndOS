@@ -54,4 +54,20 @@ abstract class AndOsPlatform extends PlatformInterface {
   Future<bool> isEmulator() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+
+  Future<bool> isAppInDebugMode(String bundleId) {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+
+  Future<bool> isRunningOnEmulator() {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+
+  Future<bool> isRuntimeTampered() {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+
+  Future<bool> isAppBeingDebugged() {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
 }

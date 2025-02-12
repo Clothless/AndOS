@@ -12,6 +12,21 @@ public class AndOsPlugin: NSObject, FlutterPlugin {
     switch call.method {
     case "getPlatformVersion":
       result("iOS " + UIDevice.current.systemVersion)
+    case "isDeviceJailbroken":
+    var bundleId = call.arguments as! [String: Any]
+        result(IOS.isDeviceJailbroken(bundleId))
+    case "isAppInDebugMode":
+        result(IOS.isAppInDebugMode())
+    case "isRunningOnEmulator":
+        result(IOS.isRunningOnEmulator())
+    case "isRuntimeTampered":
+        result(IOS.isRuntimeTampered())
+    case "isFridaDetected":
+        result(IOS.isFridaDetected())
+    case "isAppBeingDebugged":
+        result(IOS.isAppBeingDebugged())
+    case "isRunningInSimulator":
+        result(IOS.isRunningInSimulator())
     default:
       result(FlutterMethodNotImplemented)
     }

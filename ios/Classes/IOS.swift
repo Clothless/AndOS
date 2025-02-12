@@ -1,5 +1,5 @@
 class IOS {
-      func isDeviceJailbroken() -> Bool {
+      func isDeviceJailbroken(bundleId: String) -> Bool {
           // Check for common jailbreak files
           let paths = [
               "/Applications/Cydia.app",
@@ -26,7 +26,7 @@ class IOS {
           }
 
           // Check if the app can open Cydia URL scheme
-          if let url = URL(string: "cydia://package/dz.smartsolutioninnov.mpay") {
+          if let url = URL(string: "cydia://package/"+bundleId) {
               if UIApplication.shared.canOpenURL(url) {
                   return true
               }
@@ -103,23 +103,4 @@ class IOS {
           return (info.kp_proc.p_flag & P_TRACED) != 0
       }
 
-      // Comprehensive security check
-      func performSecurityChecks() -> Bool {
-          if isDeviceJailbroken() {
-              return false
-          }
-          if isAppInDebugMode() {
-              return false
-          }
-          if isRunningOnEmulator() {
-              return false
-          }
-          if isFridaDetected() {
-              return false
-          }
-          if isAppBeingDebugged() {
-              return false
-          }
-          return true
-      }
   }

@@ -15,6 +15,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     return version;
   }
 
+  // For Android
   // isAdbEnabled checks if the adb options is activated on the device
   // @returns bool
   @override
@@ -29,6 +30,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     }
   }
 
+  // For Android
   // isDeviceRooted checks if the device is rooted or not
   // it checks for the following directories:
   //
@@ -55,6 +57,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     }
   }
 
+  // For Android
   // isDeveloperModeEnabled checks if the developer mode is active on the device
   // @returns bool
   @override
@@ -69,6 +72,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     }
   }
 
+  // For Android
   // isAppDebuggable checks if the app is debuggable
   // it checks for the "FLAG_DEBUGGABLE" presence in the app
   // @returns bool
@@ -84,6 +88,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     }
   }
 
+  // For Android
   // isAppSignatureValid checks the app signature in base64
   // it means that the app was decompiled, changed somehow, and compiled again and signed with a new signature
   // when creating a signature with keystore you'll get SHA256 signature
@@ -102,6 +107,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     }
   }
 
+  // For Android & IOS
   // Frida is an open source tool that is used for reverse engineering
   // isFridaDetected checks if the frida-server is injected in the device
   // @returns bool
@@ -117,6 +123,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     }
   }
 
+  // For Android
   // isEmulator checks if the app is running on real device or an emulator
   // it checks if the model contains some words, ex (generic, unknown, emulator etc...)
   // it also checks the fingerprint, manufacturer, brand, product
@@ -125,6 +132,67 @@ class MethodChannelAndOs extends AndOsPlatform {
   Future<bool> isEmulator() async {
     try {
       final result = await _channel.invokeMethod('isEmulator');
+      return result;
+    } on PlatformException catch (e) {
+      throw UnimplementedError();
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // For IOS
+  // isAppInDebugMode is used to check if the app is being debugged
+  // @returns bool
+  @override
+  Future<bool> isAppInDebugMode(String bundleId) async {
+    try {
+      final result = await _channel.invokeMethod('isAppInDebugMode');
+      return result;
+    } on PlatformException catch (e) {
+      throw UnimplementedError();
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // For IOS
+  // isRunningOnEmulator checks if the app is running on real device or an emulator
+  // @returns bool
+  @override
+  Future<bool> isRunningOnEmulator() async {
+    try {
+      final result = await _channel.invokeMethod('isRunningOnEmulator');
+      return result;
+    } on PlatformException catch (e) {
+      throw UnimplementedError();
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // For IOS
+  // isRuntimeTampered Checking for reverse engineering tools
+  // @returns bool
+  @override
+  Future<bool> isRuntimeTampered() async {
+    try {
+      final result = await _channel.invokeMethod('isRuntimeTampered');
+      return result;
+    } on PlatformException catch (e) {
+      throw UnimplementedError();
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // For IOS
+  // isAppBeingDebugged is used to check if the app is running in debug mode
+  // it's somehow the equivalent of checking adb in android
+  // @returns bool
+  @override
+  Future<bool> isAppBeingDebugged() async {
+    try {
+      final result = await _channel.invokeMethod('isAppBeingDebugged');
       return result;
     } on PlatformException catch (e) {
       throw UnimplementedError();
