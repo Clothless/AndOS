@@ -37,6 +37,30 @@ class MockAndOsPlatform
 
   @override
   Future<bool> isEmulator() => Future.value(true);
+
+  @override
+  Future<bool> isAppBeingDebugged() {
+    // TODO: implement isAppBeingDebugged
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> isAppInDebugMode(String bundleId) {
+    // TODO: implement isAppInDebugMode
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> isRunningOnEmulator() {
+    // TODO: implement isRunningOnEmulator
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> isRuntimeTampered() {
+    // TODO: implement isRuntimeTampered
+    throw UnimplementedError();
+  }
 }
 
 void main() {
