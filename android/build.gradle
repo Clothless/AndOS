@@ -1,67 +1,87 @@
 group = "com.clothless.andos.and_os"
 version = "1.0-SNAPSHOT"
 
+
+
 buildscript {
     ext.kotlin_version = "1.8.22"
     repositories {
         google()
         mavenCentral()
+
     }
 
+
     dependencies {
-        classpath("com.android.tools.build:gradle:8.1.0")
+        classpath("com.android.tools.build:gradle:8.0.0")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }
+
 
 allprojects {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url 'https://storage.googleapis.com/download.flutter.io'
+        }
     }
 }
 
+
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
+
 
 android {
     if (project.android.hasProperty("namespace")) {
         namespace = "com.clothless.andos.and_os"
     }
 
+
     compileSdk = 34
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
     }
+
 
     sourceSets {
         main.java.srcDirs += "src/main/kotlin"
         test.java.srcDirs += "src/test/kotlin"
     }
 
+
     defaultConfig {
         minSdk = 21
     }
 
+
     dependencies {
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+        implementation "io.flutter:flutter_embedding_debug:1.0.0-3316dd8728419ad3534e3f6112aa6291f587078a"
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.mockito:mockito-core:5.0.0")
     }
+
 
     testOptions {
         unitTests.all {
             useJUnitPlatform()
 
+
             testLogging {
-               events "passed", "skipped", "failed", "standardOut", "standardError"
-               outputs.upToDateWhen {false}
-               showStandardStreams = true
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen {false}
+                showStandardStreams = true
             }
         }
     }
