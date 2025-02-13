@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import 'and_os_platform_interface.dart';
@@ -6,7 +5,6 @@ import 'and_os_platform_interface.dart';
 /// An implementation of [AndOsPlatform] that uses method channels.
 class MethodChannelAndOs extends AndOsPlatform {
   /// The method channel used to interact with the native platform.
-  @visibleForTesting
   static const _channel = MethodChannel('and_os');
 
   @override
@@ -20,7 +18,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     try {
       final result = await _channel.invokeMethod('isAdbEnabled');
       return result;
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       throw UnimplementedError();
     } catch (e) {
       return false;
@@ -32,7 +30,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     try {
       final result = await _channel.invokeMethod('isDeviceRooted');
       return result;
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       throw UnimplementedError();
     } catch (e) {
       return false;
@@ -45,7 +43,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     try {
       final result = await _channel.invokeMethod('isDeveloperModeEnabled');
       return result;
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       throw UnimplementedError();
     } catch (e) {
       return false;
@@ -57,7 +55,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     try {
       final result = await _channel.invokeMethod('isAppDebuggable');
       return result;
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       throw UnimplementedError();
     } catch (e) {
       return false;
@@ -68,9 +66,9 @@ class MethodChannelAndOs extends AndOsPlatform {
   Future<bool> isAppSignatureValid(String signature) async {
     try {
       final result = await _channel
-          .invokeMethod('isAppSignatureValid', {"signature": signature!});
+          .invokeMethod('isAppSignatureValid', {"signature": signature});
       return result;
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       throw UnimplementedError();
     } catch (e) {
       return false;
@@ -82,7 +80,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     try {
       final result = await _channel.invokeMethod('isFridaDetected');
       return result;
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       throw UnimplementedError();
     } catch (e) {
       return false;
@@ -94,7 +92,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     try {
       final result = await _channel.invokeMethod('isEmulator');
       return result;
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       throw UnimplementedError();
     } catch (e) {
       return false;
@@ -106,7 +104,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     try {
       final result = await _channel.invokeMethod('isAppInDebugMode');
       return result;
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       throw UnimplementedError();
     } catch (e) {
       return false;
@@ -118,7 +116,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     try {
       final result = await _channel.invokeMethod('isRunningOnEmulator');
       return result;
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       throw UnimplementedError();
     } catch (e) {
       return false;
@@ -130,7 +128,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     try {
       final result = await _channel.invokeMethod('isRuntimeTampered');
       return result;
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       throw UnimplementedError();
     } catch (e) {
       return false;
@@ -142,7 +140,7 @@ class MethodChannelAndOs extends AndOsPlatform {
     try {
       final result = await _channel.invokeMethod('isAppBeingDebugged');
       return result;
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       throw UnimplementedError();
     } catch (e) {
       return false;
